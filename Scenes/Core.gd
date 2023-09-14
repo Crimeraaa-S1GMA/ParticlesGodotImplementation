@@ -116,8 +116,9 @@ func process_particles() -> void:
 							var x_rand : int = (randi() % (int(sim_size.x) - 2)) + 1
 							var y_rand : int = (randi() % (int(sim_size.y) - 2)) + 1
 							
-							particle_indexes[x_rand][y_rand] = ParticleTileData.new(4, sim_frame)
-							particle_indexes[x][y] = ParticleTileData.new(0, sim_frame)
+							if particle_indexes[x_rand][y_rand].particle_id == 0:
+								particle_indexes[x_rand][y_rand] = ParticleTileData.new(4, sim_frame)
+								particle_indexes[x][y] = ParticleTileData.new(0, sim_frame)
 					5:
 						if particle_indexes[x + particle_indexes[x][y].direction_x][y].particle_id == 0:
 							particle_indexes[x + particle_indexes[x][y].direction_x][y] = ParticleTileData.new(5, sim_frame, particle_indexes[x][y].direction_x, particle_indexes[x][y].direction_y)
