@@ -6,7 +6,7 @@ var particle_indexes : Array = []
 
 var sim_frame : int = 0
 
-var sim_size : Vector2 = Vector2(100, 200)
+var sim_size : Vector2 = Vector2(25, 25)
 
 func _ready():
 	randomize()
@@ -24,7 +24,6 @@ func _ready():
 				x_arr.append(ParticleTileData.new(100))
 			else:
 				var amount : float = noise.get_noise_2d(x, y)
-				amount = 0
 				if amount > 0.2:
 					if amount > 0.45:
 						x_arr.append(ParticleTileData.new(1, -1, 0, -1))
