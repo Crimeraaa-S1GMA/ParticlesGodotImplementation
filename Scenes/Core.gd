@@ -6,7 +6,7 @@ var particle_indexes : Array = []
 
 var sim_frame : int = 0
 
-var sim_size : Vector2 = Vector2(100, 100)
+var sim_size : Vector2 = Vector2(100, 200)
 
 func _ready():
 	randomize()
@@ -17,9 +17,9 @@ func _ready():
 	
 	noise.period = 0.5
 	
-	for y in range(sim_size.y):
+	for x in range(sim_size.x):
 		var x_arr : Array = []
-		for x in range(sim_size.x):
+		for y in range(sim_size.y):
 			if y == 0 or y == sim_size.y - 1 or x == 0 or x == sim_size.x - 1:
 				x_arr.append(ParticleTileData.new(100))
 			else:
