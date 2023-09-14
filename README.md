@@ -1,2 +1,2 @@
 # ParticlesGodotImplementation
-implementation of a garbage particle with different simulator in the Godot engine
+implementation of a garbage particle with different properties simulator in the Godot engine
