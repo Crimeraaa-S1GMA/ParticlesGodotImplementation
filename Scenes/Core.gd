@@ -6,7 +6,7 @@ var particle_indexes : Array = []
 
 var sim_frame : int = 0
 
-var sim_size : Vector2 = Vector2(25, 25)
+var sim_size : Vector2 = Vector2(50, 50)
 
 func _ready():
 	randomize()
