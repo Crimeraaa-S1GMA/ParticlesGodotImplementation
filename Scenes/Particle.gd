@@ -26,14 +26,14 @@ func _process(delta):
 						get_tree().current_scene.particle_indexes[x][y] = ParticleTileData.new(5, -1, 1, 0)
 	else:
 		match get_tree().current_scene.particle_indexes[x][y].particle_id:
-#			1:
-#				modulate = Color.red
-#			2:
-#				modulate = Color.yellow
-#			3:
-#				modulate = Color.green
-#			5:
-#				modulate = Color.purple
+			1:
+				modulate = Color.red
+			2:
+				modulate = Color.yellow
+			3:
+				modulate = Color.green
+			5:
+				modulate = Color.purple
 			4:
 				modulate = Color.blue
 			100:

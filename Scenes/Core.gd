@@ -131,5 +131,4 @@ func process_particles() -> void:
 	sim_frame += 1
 
 func _on_ProcessingTimer_timeout():
-	for i in range(4):
-		process_particles()
+	process_particles()
