@@ -31,7 +31,7 @@ func _ready():
 					elif amount > 0.35:
 						x_arr.append(ParticleTileData.new(2, -1, 0, 1))
 					elif amount > 0.3:
-						x_arr.append(ParticleTileData.new(5, -1, -1, 0))
+						x_arr.append(ParticleTileData.new(5, -1, 1, 1))
 					elif amount > 0.25:
 						x_arr.append(ParticleTileData.new(3, -1, 0, 0))
 					else:
@@ -54,11 +54,23 @@ func process_particles() -> void:
 			if particle_indexes[x][y].last_frame_updated != sim_frame:
 				match particle_indexes[x][y].particle_id:
 					1:
-						if particle_indexes[x][y + particle_indexes[x][y].direction_y].particle_id == 0:
-							particle_indexes[x][y + particle_indexes[x][y].direction_y] = ParticleTileData.new(1, sim_frame, particle_indexes[x][y].direction_x, particle_indexes[x][y].direction_y)
+						if particle_indexes[x + particle_indexes[x][y].direction_x][y + particle_indexes[x][y].direction_y].particle_id == 0:
+							particle_indexes[x + particle_indexes[x][y].direction_x][y + particle_indexes[x][y].direction_y] = ParticleTileData.new(1, sim_frame, particle_indexes[x][y].direction_x, particle_indexes[x][y].direction_y)
 							particle_indexes[x][y] = ParticleTileData.new(0, sim_frame)
 						else:
-							particle_indexes[x][y].direction_y *= -1
+							match Vector2(particle_indexes[x][y].direction_x, particle_indexes[x][y].direction_y):
+								Vector2.RIGHT:
+									particle_indexes[x][y].direction_x = 0
+									particle_indexes[x][y].direction_y = -1
+								Vector2.DOWN:
+									particle_indexes[x][y].direction_x = 1
+									particle_indexes[x][y].direction_y = 0
+								Vector2.LEFT:
+									particle_indexes[x][y].direction_x = 0
+									particle_indexes[x][y].direction_y = 1
+								Vector2.UP:
+									particle_indexes[x][y].direction_x = -1
+									particle_indexes[x][y].direction_y = 0
 							if particle_indexes[x + particle_indexes[x][y].direction_x * -1][y + particle_indexes[x][y].direction_y * -1].particle_id == 4:
 								if particle_indexes[x + particle_indexes[x][y].direction_x * -2][y + particle_indexes[x][y].direction_y * -2].particle_id == 0:
 									particle_indexes[x + particle_indexes[x][y].direction_x * -1][y + particle_indexes[x][y].direction_y * -1] = ParticleTileData.new(0, sim_frame)
@@ -121,11 +133,12 @@ func process_particles() -> void:
 								particle_indexes[x_rand][y_rand] = ParticleTileData.new(4, sim_frame)
 								particle_indexes[x][y] = ParticleTileData.new(0, sim_frame)
 					5:
-						if particle_indexes[x + particle_indexes[x][y].direction_x][y].particle_id == 0:
-							particle_indexes[x + particle_indexes[x][y].direction_x][y] = ParticleTileData.new(5, sim_frame, particle_indexes[x][y].direction_x, particle_indexes[x][y].direction_y)
+						if particle_indexes[x + particle_indexes[x][y].direction_x][y + particle_indexes[x][y].direction_y].particle_id == 0:
+							particle_indexes[x + particle_indexes[x][y].direction_x][y + particle_indexes[x][y].direction_y] = ParticleTileData.new(5, sim_frame, particle_indexes[x][y].direction_x, particle_indexes[x][y].direction_y)
 							particle_indexes[x][y] = ParticleTileData.new(0, sim_frame)
 						else:
 							particle_indexes[x][y].direction_x *= -1
+							particle_indexes[x][y].direction_y *= -1
 							if particle_indexes[x + particle_indexes[x][y].direction_x * -1][y + particle_indexes[x][y].direction_y * -1].particle_id == 4:
 								if particle_indexes[x + particle_indexes[x][y].direction_x * -2][y + particle_indexes[x][y].direction_y * -2].particle_id == 0:
 									particle_indexes[x + particle_indexes[x][y].direction_x * -1][y + particle_indexes[x][y].direction_y * -1] = ParticleTileData.new(0, sim_frame)

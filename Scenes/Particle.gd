@@ -23,7 +23,7 @@ func _process(delta):
 					2:
 						get_tree().current_scene.particle_indexes[x][y] = ParticleTileData.new(3, -1, 0, 0)
 					3:
-						get_tree().current_scene.particle_indexes[x][y] = ParticleTileData.new(5, -1, 1, 0)
+						get_tree().current_scene.particle_indexes[x][y] = ParticleTileData.new(5, -1, 1, 1)
 	else:
 		match get_tree().current_scene.particle_indexes[x][y].particle_id:
 			1:
