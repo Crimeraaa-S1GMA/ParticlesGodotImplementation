@@ -24,6 +24,7 @@ func _ready():
 				x_arr.append(ParticleTileData.new(100))
 			else:
 				var amount : float = noise.get_noise_2d(x, y)
+				amount = 0
 				if amount > 0.2:
 					if amount > 0.45:
 						x_arr.append(ParticleTileData.new(1, -1, 0, -1))
